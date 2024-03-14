@@ -15,10 +15,8 @@ export default function App() {
 
     const handleSetWaypoints = ({ id, lat, lng }: ISelectWaypoint) => {
         if (Array.isArray(waypoints)) {
-            const isAlreadySet = waypoints.some((data) => data.id == id)
-
             setWaypoints((prev) => {
-                if (isAlreadySet) {
+                if (prev.some((data) => data.id == id)) {
                     return prev.filter((data) => data.id != id)
                 }
 
