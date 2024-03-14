@@ -10,7 +10,7 @@ entre na pasta
   cd fj_frontend
 ```
 
-execute o comanto para instalar as dependências
+execute o comando para instalar as dependências
 ```
   yarn 
 ```
