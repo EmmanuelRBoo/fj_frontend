@@ -11,8 +11,6 @@ export function Maps({ waypointLocations }: { waypointLocations: ILocation[] }) 
 
     const createRouteLayer = () => {
 
-        ///const renderWaypts = waypointLocations.length == 0 ? [] : waypointLocations.map((data) => L.latLng(data))
-
         const data: L.LatLng[] = []
 
         if (Array.isArray(waypointLocations)) {
