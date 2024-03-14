@@ -1,7 +1,7 @@
 import axios, { CreateAxiosDefaults } from 'axios'
 
 const config: CreateAxiosDefaults = {
-    baseURL: 'http://localhost:3333/api/v1',
+    baseURL: 'https://fj-backend.onrender.com/api/v1',
 }
 
 const googleConfig: CreateAxiosDefaults = {
