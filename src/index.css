@@ -1,0 +1,365 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
+
+@import './../node_modules/leaflet/dist/leaflet.css';
+
+* {
+    box-sizing: border-box;
+    font-family: 'Ubuntu', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    background-color: #313335;
+    overflow: hidden;
+}
+
+main {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+h1 {
+    font-size: 3rem;
+    margin: .4rem 0;
+}
+
+h2 {
+    font-size: 2rem;
+    margin: .6rem 0;
+}
+
+h3 {
+    font-size: 1.4rem;
+}
+
+p {
+    font-size: .9rem;
+}
+
+h1, h2, p, span, small {
+    color: #f1f3f5;
+}
+
+input {
+    border: 1px solid #313335;
+    border-radius: 4px;
+    font-size: 1rem;
+    height: 2.6rem;
+    outline: none;
+    padding-left: .6rem;
+    width: 100%;
+}
+
+button {
+    border: none;
+    border-radius: 4px;
+    color: #f1f3f5;
+    cursor: pointer;
+    font-size: 1rem;
+    max-width: 120px;
+    padding: .6rem 1.2rem;
+}
+
+button:disabled {
+    background-color: #313335;
+    cursor: not-allowed;
+}
+
+button:hover {
+    filter: 90%;
+    -webkit-filter: brightness(90%);
+}
+
+.main-container {
+    display: flex;
+    justify-content: space-between;
+    max-height: 86vh;
+    max-width: 90vw;
+    overflow: hidden;
+    width: 100%;
+}
+
+.cliente-container {
+    border: 1px solid #f1f3f5;
+    border-left: none;
+    border-radius: 0 24px 24px 0;
+    text-align: center;
+    height: 86vh;
+    width: 30%;
+}
+
+.leaflet-routing-container h2 {
+    display: none;
+}
+
+.leaflet-routing-container {
+    background-color: #f1f3f5;
+    padding: .4rem;
+    width: 100%;
+}
+
+.map-container {
+    align-items: center;
+    border-radius: 24px 0 0 24px;
+    display: flex;
+    justify-content: center;
+    height: 86vh;
+    width: 65vw;
+    z-index: 1;
+}
+
+.map-container span {
+    color: #313335;
+}
+
+.map-loading-container {
+    align-items: center;
+    border: 1px solid #f1f3f5;
+    border-radius: 24px 0 0 24px;
+    display: flex;
+    justify-content: center;
+    height: 86vh;
+    width: 65vw;
+}
+
+.my-position-icon {
+    height: 1.6rem;
+}
+
+.cliente-list{
+    margin-top: 2rem;
+}
+
+.add-cliente-link {
+    cursor: pointer;
+    display: block;
+    margin-top: .6rem;
+    text-decoration: underline;
+}
+
+.modal-overlay {
+    align-items: center;
+    background-color: rgba(0,0,0,0.6);
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    overflow: hidden;
+    padding: 2rem;
+    position: fixed;
+    top: 0;
+    width: 100vw;
+    z-index: 3;
+}
+
+.modal-container {
+    background-color: #f1f3f5;
+    border-radius: 24px;
+    height: auto;
+    padding: 1.4rem;
+    width: 60vw;
+    z-index: 4;
+}
+
+.modal-header {
+    align-items: center;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.modal-body {
+    display: flex;
+    flex-direction: column;
+    gap: 1.8rem;
+    margin: 3rem 0;
+}
+
+.modal-body-delete {
+    margin: 2rem 0;
+}
+
+.modal-body-delete p {
+    color: #313335;
+    font-size: 1rem;
+    margin: .4rem 0;
+}
+
+.modal-footer {
+    display: flex;
+    gap: 1.4rem;
+    justify-content: flex-end;
+}
+
+.btn-primary {
+    align-items: center;
+    background-color: transparent;
+    border: 1px solid #f1f3f5;
+    color: #f1f3f5;
+    display: flex;
+    gap: .4rem;
+}
+
+.btn-success {
+    background-color: #22c900;
+}
+
+.btn-danger {
+    background-color: #ff1428;
+}
+
+.close-icon {
+    cursor: pointer;
+    margin-left: auto;
+    padding: .2rem;
+}
+
+.autocomplete-container, .autocomplete-input-container {
+    width: 100%;
+}
+
+.autocomplete-input-container, .autocomplete-list-container {
+    position: relative;
+    width: 100%;
+}
+
+.autocomplete-input-icon {
+    cursor: text;
+    position: absolute;
+    right: 6px;
+    top: 52%;
+    transform: translateY(-50%);
+}
+
+.autocomplete-list {
+    background-color: #f1f3f5;
+    border: 1px solid #313335;
+    border-radius: 0 0 4px 4px;
+    border-top: none;
+    list-style: none;
+    max-height: 260px;
+    overflow-y: scroll;
+    position: absolute;
+    top: -3px;
+    width: 100%;
+}
+
+.autocomplete-list-item {
+    align-items: center;
+    cursor: pointer;
+    display: flex;
+    height: 2.8rem;
+    justify-content: flex-start;
+    margin: .2rem 0;
+    padding: .4rem;
+}
+
+.autocomplete-list-item:hover {
+    background-color: #e6e6e6;
+}
+
+.cliente-list-container {
+    align-items: flex-end;
+    display: flex;
+    flex-direction: column;
+    gap: .8rem;
+    justify-content: center;
+    padding: 1rem;
+}
+
+.card-list {
+    align-items: flex-start;
+    border-bottom: 1px solid #f1f3f5;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    padding: .6rem;
+    width: 100%;
+}
+
+.card-list:last-child {
+    border: none;
+}
+
+.card-list-body {
+    display: flex;
+    flex-direction: column;
+    gap: .6rem;
+    max-height: 320px;
+    overflow-y: auto;
+    padding-right: 6px;
+    width: 100%;
+}
+
+.card-list-header {
+    align-items: center; 
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.card-list-icons {
+    color: #f1f3f5;
+    display: flex;
+    gap: .8rem;
+    
+}
+
+.card-list-icons > * {
+    cursor: pointer;
+    padding: .2rem;
+}
+
+.card-list-icons > *:hover {
+    background-color: #f1f3f577;
+    border-radius: 4px;
+    color: #313335;
+}
+
+.selected-card {
+    background-color: #f1f3f534;
+    border: none;
+    border-radius: 4px;
+}
+
+.loading-icon {
+    animation: loading infinite linear 1s;
+    transform: none;
+}
+
+.alert {
+    align-items: center;
+    border-radius: 8px;
+    display: flex;
+    height: 2rem;
+    justify-content: center;
+    padding: 1.6rem;
+    position: fixed;
+    right: 2rem;
+    top: 2rem;
+    z-index: 4;
+}
+
+.alert-success {
+    background-color: #22c900;
+}
+
+.alert-error {
+    background-color: #ff1428;
+}
+
+@keyframes loading {
+    100% {
+        rotate: 1turn;
+    }
+}
+
+@media (max-width: 640px) {
+    .modal-overlay {
+        padding: 0;
+    }
+    .modal-container {
+        width: 100vw;
+    }
+}
